@@ -2,7 +2,7 @@
   <img src="packaging/icons/app.png" alt="Call Recording Downloader logo" width="128" height="128">
 </p>
 
-# Call Recording Downloader
+# Call Recording Downloader for Ringover
 
 [![CI](https://github.com/leoleiria/call-recording-downloader/actions/workflows/ci.yml/badge.svg)](https://github.com/leoleiria/call-recording-downloader/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
