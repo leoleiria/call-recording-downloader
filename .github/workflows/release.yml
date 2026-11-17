@@ -17,14 +17,10 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            command: .\script\package.ps1 -Type all
-            shell: pwsh
           - os: macos-latest
-            command: ./script/package.sh dmg
-            shell: bash
+            package_type: dmg
           - os: ubuntu-latest
-            command: ./script/package.sh deb
-            shell: bash
+            package_type: deb
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -45,9 +41,16 @@ jobs:
             Select-Object -First 1
           "$($wix.FullName)\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
 
-      - name: Build package
-        run: ${{ matrix.command }}
-        shell: ${{ matrix.shell }}
+      # `shell` cannot come from the matrix (GitHub rejects expressions there), hence two steps.
+      - name: Build packages (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\script\package.ps1 -Type all
+
+      - name: Build package (macOS / Linux)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: ./script/package.sh "${{ matrix.package_type }}"
 
       - uses: actions/upload-artifact@v4
         with:

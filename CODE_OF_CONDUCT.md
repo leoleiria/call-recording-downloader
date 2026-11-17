@@ -15,7 +15,7 @@ the project in public.
 ## Reporting
 
 Report unacceptable behaviour privately to the maintainer through
-[GitHub's private reporting](https://github.com/leoleiria/call-recording-downloader/security/advisories/new),
-or by contacting [@leoleiria](https://github.com/leoleiria) directly. Reports are handled
+[GitHub's private reporting](https://github.com/leoleiria/call-recording-downloader/security/advisories/new).
+Reports are handled
 confidentially. The maintainer may remove content and restrict participation, following the
 enforcement guidelines of the Contributor Covenant.

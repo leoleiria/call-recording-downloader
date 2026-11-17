@@ -76,6 +76,14 @@ confirmation the first time. See the [user guide](docs/user_guide.md#first-launc
 - [Ringover API notes](_docs/ringover_api_notes.md): how the app uses the API
 - [Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
 
+## Support and requests
+
+All questions, bug reports and feature requests go through
+[GitHub Issues](https://github.com/leoleiria/call-recording-downloader/issues/new/choose), using the
+templates. Security problems go through a
+[private security advisory](https://github.com/leoleiria/call-recording-downloader/security/advisories/new).
+Requests sent through any other channel are not handled.
+
 ## License
 
 Released under the [MIT License](LICENSE). The software is provided "as is", without warranty of any
