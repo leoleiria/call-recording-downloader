@@ -1,0 +1,27 @@
+# Build output
+target/
+dist/
+*.part
+
+# Maven wrapper downloads
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+*.swp
+
+# Operating systems
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local files that must never be committed
+*.env
+.env.*
+secrets.*

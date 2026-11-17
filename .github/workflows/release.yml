@@ -1,0 +1,78 @@
+name: Release
+
+# Builds self-contained packages for every platform when a version tag (v1.2.3) is pushed and
+# attaches them to a draft GitHub release for review before publishing.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            command: .\script\package.ps1 -Type all
+            shell: pwsh
+          - os: macos-latest
+            command: ./script/package.sh dmg
+            shell: bash
+          - os: ubuntu-latest
+            command: ./script/package.sh deb
+            shell: bash
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      # jpackage (JDK 21) builds .msi files with WiX Toolset 3.x.
+      - name: Install WiX Toolset 3
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install wixtoolset --version 3.14.1 --yes --no-progress
+          $wix = Get-ChildItem "${env:ProgramFiles(x86)}" -Directory -Filter 'WiX Toolset v3*' |
+            Select-Object -First 1
+          "$($wix.FullName)\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Build package
+        run: ${{ matrix.command }}
+        shell: ${{ matrix.shell }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ matrix.os }}
+          path: |
+            dist/*.zip
+            dist/*.msi
+            dist/*.dmg
+            dist/*.deb
+          if-no-files-found: error
+
+  release:
+    name: Draft GitHub release
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: packages
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          files: packages/*

@@ -1,0 +1,52 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Never paste your API key, real phone numbers, recordings or
+        transcriptions.** For security problems use the
+        [private advisory form](https://github.com/leoleiria/call-recording-downloader/security/advisories/new) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Search +34666666666 from 2025-01-01 to 2025-02-28
+        2. Click "Download recordings only"
+        3. ...
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in "About".
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux]
+    validations:
+      required: true
+  - type: dropdown
+    id: region
+    attributes:
+      label: Ringover region
+      options: [Europe, United States]
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log excerpt
+      description: |
+        From ~/.call-recording-downloader/logs/app.log. API keys are masked automatically, but check
+        for call ids or anything else you do not want to share.
+      render: text

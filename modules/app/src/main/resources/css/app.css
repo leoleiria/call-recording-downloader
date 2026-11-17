@@ -1,0 +1,115 @@
+/*
+ * Call Recording Downloader: neutral light theme on top of JavaFX Modena.
+ *
+ * Modena derives default text colors from -fx-background. Never set it to "transparent"
+ * (labels then turn white); every text color used here is set explicitly instead.
+ * Contrast of text on its background meets WCAG AA (4.5:1 or more).
+ */
+
+.root {
+  -app-text: #1b1f27;
+  -app-muted: #4f5664;
+  -app-accent: #1f4fd8;
+  -app-accent-hover: #173fb0;
+  -app-error: #b3261e;
+  -app-surface: #ffffff;
+  -app-background: #eef0f4;
+  -app-border: #cfd4dc;
+
+  -fx-base: #f7f8fa;
+  -fx-background: -app-background;
+  -fx-background-color: -app-background;
+  -fx-text-background-color: -app-text;
+  -fx-accent: -app-accent;
+  -fx-focus-color: -app-accent;
+  -fx-font-size: 13px;
+}
+
+.page {
+  -fx-padding: 24;
+}
+
+.page-scroll,
+.page-scroll > .viewport {
+  -fx-background: -app-background;
+  -fx-background-color: -app-background;
+  -fx-padding: 0;
+}
+
+.label {
+  -fx-text-fill: -app-text;
+}
+
+.title {
+  -fx-font-size: 22px;
+  -fx-font-weight: bold;
+  -fx-text-fill: -app-text;
+}
+
+.subtitle {
+  -fx-text-fill: -app-muted;
+}
+
+.hint {
+  -fx-text-fill: -app-muted;
+  -fx-font-size: 11.5px;
+}
+
+.form-label {
+  -fx-font-weight: bold;
+}
+
+.card,
+.stat {
+  -fx-background: -app-surface;
+  -fx-background-color: -app-surface;
+  -fx-background-radius: 8;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 8;
+  -fx-padding: 16;
+}
+
+.stat-value {
+  -fx-font-size: 28px;
+  -fx-font-weight: bold;
+  -fx-text-fill: -app-text;
+}
+
+.stat-caption {
+  -fx-text-fill: -app-muted;
+  -fx-font-weight: bold;
+}
+
+.button.primary {
+  -fx-background-color: -app-accent;
+  -fx-text-fill: white;
+  -fx-background-radius: 6;
+  -fx-font-weight: bold;
+}
+
+.button.primary:hover {
+  -fx-background-color: -app-accent-hover;
+}
+
+.button:disabled {
+  -fx-opacity: 0.55;
+}
+
+.status {
+  -fx-font-size: 13px;
+  -fx-text-fill: -app-text;
+}
+
+.status.error {
+  -fx-text-fill: -app-error;
+  -fx-font-weight: bold;
+}
+
+.hyperlink {
+  -fx-text-fill: -app-accent;
+}
+
+.list-view {
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+}
